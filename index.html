@@ -1,0 +1,356 @@
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Network Devices </title>
+
+<style>
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background: #e9ecef;
+    color: #333;
+}
+
+.container {
+    width: 92%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+header {
+    background: #007bff;
+    color: white;
+    padding: 30px 10px;
+    text-align: center;
+    border-bottom: 5px solid #0056b3;
+}
+header h1 { margin: 0; }
+
+.section {
+    background: white;
+    padding: 20px;
+    margin: 25px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: .8s;
+}
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* IMAGE STYLE */
+.image-container {
+    text-align: center;
+}
+.image-container img {
+    width: 100%;
+    max-width: 550px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+.image-caption {
+    font-style: italic;
+    color: #555;
+    font-size: .9rem;
+    margin-bottom: 10px;
+}
+
+/* DEVICE CARDS */
+.device-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+.device-card h3 {
+    margin: 0;
+    padding: 15px;
+    background: #f2f2f2;
+    cursor: pointer;
+}
+.device-card h3:hover {
+    background: #e6e6e6;
+}
+.device-info {
+    padding: 15px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height .5s, opacity .5s;
+}
+.device-info.show {
+    max-height: 1500px;
+    opacity: 1;
+}
+
+/* CAROUSEL */
+.carousel {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    position: relative;
+}
+.carousel img {
+    width: 100%;
+    border-radius: 10px;
+    display: none;
+}
+.carousel img.active {
+    display: block;
+}
+.carousel button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 10px 14px;
+    border-radius: 50%;
+    font-size: 18px;
+}
+.carousel .prev { left: 10px; }
+.carousel .next { right: 10px; }
+
+/* FOOTER */
+footer {
+    background: #343a40;
+    color: white;
+    text-align: center;
+    padding: 18px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <h1>Network Devices</h1>
+        <p>Learn how networks work </p>
+    </div>
+</header>
+
+<div class="container">
+
+<!-- INTRO SECTION -->
+<section class="section">
+    <h2>🌐 What is a Network?</h2>
+    <p>
+        A computer network is a group of devices connected together to share information.  
+        Think of it like a city where:
+    </p>
+    <ul>
+        <li><b>Devices</b> are houses and buildings</li>
+        <li><b>Cables and WiFi</b> are the roads</li>
+        <li><b>Routers</b> are traffic police controlling paths</li>
+        <li><b>Switches</b> are road intersections</li>
+        <li><b>Servers</b> are important offices providing services</li>
+    </ul>
+
+    <div class="image-container">
+        <img src="https://www.cignait.com/wp-content/uploads/2022/12/NETWORK-INFRASTRUCTURE.jpg">
+        <p class="image-caption">A simplified view of network infrastructure</p>
+    </div>
+</section>
+
+<!-- DEVICES SECTION -->
+<section class="section">
+    <h2>📡 Core Network Devices Explained with Images</h2>
+
+    <!-- ROUTER -->
+    <div class="device-card">
+        <h3 onclick="toggleInfo('router')">1. Router 🚦 – The Traffic Police of the Internet</h3>
+        <div class="device-info" id="router">
+            <div class="image-container">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfe2CPME55X2bl5jFd8eM_b83Ja9T-bidG5JpcqKetB-F1wGKZtwRXhu5T&s=10">
+            </div>
+            <p>
+                A router connects multiple networks together (for example: your home network 
+                and your ISP).  
+            </p>
+            <b>What it does:</b>
+            <ul>
+                <li>Chooses the <b>best path</b> for data</li>
+                <li>Assigns <b>IP addresses</b> to devices</li>
+                <li>Controls traffic to prevent congestion</li>
+                <li>Connects WiFi and wired networks</li>
+            </ul>
+            <b>Example:</b>  
+            <p>Your phone → Router → Internet</p>
+        </div>
+    </div>
+
+    <!-- SWITCH -->
+    <div class="device-card">
+        <h3 onclick="toggleInfo('switch')">2. Switch 🔗 – The Smart Intersections</h3>
+        <div class="device-info" id="switch">
+            <div class="image-container">
+                <img src="https://www.cisco.com/content/dam/cisco-cdc/site/images/legacy/assets/swa/img/anchor-info/what-is-an-ethernet-switch-628x353.png">
+            </div>
+            <p>
+                A switch connects devices inside the same building or office.  
+                It uses <b>MAC addresses</b> to send data to the correct device.
+            </p>
+            <b>What it does:</b>
+            <ul>
+                <li>Sends data only to the intended device</li>
+                <li>Reduces unnecessary network traffic</li>
+                <li>Connects PCs, printers, servers, CCTV, etc.</li>
+            </ul>
+            <b>Example:</b>
+            <p>PC → Switch → Office Network</p>
+        </div>
+    </div>
+
+    <!-- MODEM -->
+    <div class="device-card">
+        <h3 onclick="toggleInfo('modem')">3. Modem 📞 – Converts Signals</h3>
+        <div class="device-info" id="modem">
+            <div class="image-container">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4Yq1v0IbF7liCO_9tk1_jppt82-VRDT5RTtScIoTLNXqfMGOb1tTSzhyu&s=10">
+            </div>
+            <p>
+                A modem converts signals:
+            </p>
+            <ul>
+                <li><b>Digital → Analog</b> (uploads)</li>
+                <li><b>Analog → Digital</b> (downloads)</li>
+            </ul>
+            <p>Without a modem, the internet cannot work over telephone or cable lines.</p>
+        </div>
+    </div>
+
+    <!-- ACCESS POINT -->
+    <div class="device-card">
+        <h3 onclick="toggleInfo('ap')">4. Access Point 📶 – Wireless Expansion</h3>
+        <div class="device-info" id="ap">
+            <div class="image-container">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXbkkTNe7KNBDATG94wmK8Pn4TAZRaDfxiJ80vAYdwl6dCGNvX2MY_MbQ&s=10">
+            </div>
+            <p>
+                An access point extends WiFi range in large buildings like schools, malls,
+                offices, or hotels.
+            </p>
+            <b>What it does:</b>
+            <ul>
+                <li>Creates wireless networks</li>
+                <li>Connects many users at once</li>
+                <li>Improves WiFi coverage</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- HUB -->
+    <div class="device-card">
+        <h3 onclick="toggleInfo('hub')">5. Hub 🧱 – The Old-Style Device</h3>
+        <div class="device-info" id="hub">
+            <div class="image-container">
+                <img src="https://images.shiksha.com/mediadata/ugcDocuments/images/wordpressImages/2022_09_Understanding-Break-Statement-in-C-23.jpg">
+            </div>
+            <p>
+                A hub sends incoming data to <b>all connected devices</b>, even if only 
+                one device needs it.
+            </p>
+            <p><b>Disadvantage:</b>  
+                Causes network congestion and security risks.  
+                This is why hubs are replaced by switches.
+            </p>
+        </div>
+    </div>
+
+    <!-- FIREWALL -->
+    <div class="device-card">
+        <h3 onclick="toggleInfo('firewall')">6. Firewall 🔥 – Protects the Network</h3>
+        <div class="device-info" id="firewall">
+            <p>
+                A firewall filters good and bad traffic.  
+                It protects your network from:
+            </p>
+            <ul>
+                <li>Hackers</li>
+                <li>Viruses & malware</li>
+                <li>Unauthorized access</li>
+            </ul>
+            <p>
+                Firewalls can be software (Windows Firewall) or hardware (network appliances).
+            </p>
+        </div>
+    </div>
+
+</section>
+
+<!-- CABLES SECTION -->
+<section class="section">
+    <h2>🧵 Types of Network Cables</h2>
+
+    <h3>1. Ethernet (Copper) Cable</h3>
+    <p>Used in homes and offices for LAN connections.</p>
+
+    <div class="carousel">
+        <img class="active" src="https://c8.alamy.com/comp/KE15NX/ethernet-cables-connected-to-internet-switch-KE15NX.jpg">
+        <img src="https://readytogocables.com/wp-content/uploads/2022/05/how-to-differentiate-the-types-of-network-cables-readytogocables.png">
+        <img src="https://instrumentationtools.com/wp-content/uploads/2017/07/instrumentationtools.com_optical-fibers-terminations.png">
+
+        <button class="prev" onclick="moveSlide(-1)">❮</button>
+        <button class="next" onclick="moveSlide(1)">❯</button>
+    </div>
+
+    <h3>2. Fiber Optic Cable</h3>
+    <p>
+        The fastest cable type. Uses <b>light pulses</b> to transmit data at speeds
+        up to several terabits per second.
+    </p>
+    <ul>
+        <li>Used in ISPs, data centers, undersea cables</li>
+        <li>No electrical interference</li>
+        <li>Long-distance communication</li>
+    </ul>
+</section>
+
+</div>
+
+<footer>
+    <p>&copy; 2025 Network Devices – Explained by Omkar Jadhav</p>
+</footer>
+
+<script>
+
+/* Toggle cards */
+function toggleInfo(id){
+    document.getElementById(id).classList.toggle("show");
+}
+
+/* Scroll animation */
+const sections = document.querySelectorAll(".section");
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add("visible");
+        }
+    });
+});
+sections.forEach(sec => observer.observe(sec));
+
+/* Carousel */
+let slideIndex = 0;
+function moveSlide(step){
+    const slides = document.querySelectorAll(".carousel img");
+    slideIndex = (slideIndex + step + slides.length) % slides.length;
+    slides.forEach((s, i)=> s.classList.toggle("active", i === slideIndex));
+}
+
+</script>
+</body>
+</html>
